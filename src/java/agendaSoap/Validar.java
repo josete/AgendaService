@@ -9,18 +9,16 @@ import clases.Agenda;
 import clases.Persona;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Validator;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import metodos.CrearXsd;
 import metodos.ImportarExportar;
 import org.xml.sax.SAXException;
 
@@ -34,6 +32,9 @@ public class Validar {
     @WebMethod(operationName = "validarAgenda")
     public boolean validarAgenda(File a) {
         File schemaFile = new File("validador.xsd");
+        if(!schemaFile.exists()){
+            CrearXsd.crear();
+        }
         /*ImportarExportar i = new ImportarExportar("agenda.xml");
         File f = i.guardar(a);*/
         Source xmlFile = new StreamSource(a);
