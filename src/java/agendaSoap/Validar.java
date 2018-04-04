@@ -32,11 +32,11 @@ import org.xml.sax.SAXException;
 public class Validar {
 
     @WebMethod(operationName = "validarAgenda")
-    public boolean validarAgenda(Agenda a) {
+    public boolean validarAgenda(File a) {
         File schemaFile = new File("validador.xsd");
-        ImportarExportar i = new ImportarExportar("agenda.xml");
-        File f = i.guardar(a);
-        Source xmlFile = new StreamSource(f);
+        /*ImportarExportar i = new ImportarExportar("agenda.xml");
+        File f = i.guardar(a);*/
+        Source xmlFile = new StreamSource(a);
         SchemaFactory schemaFactory = SchemaFactory
                 .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try {
